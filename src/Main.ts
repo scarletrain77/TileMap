@@ -175,6 +175,15 @@ class Main extends egret.DisplayObjectContainer {
             this.addChild(bitmap);
             console.log("第"+i+"x:"+bitmap.x + "y"+bitmap.y);*/
         }
+
+        var player = new Player();
+        player.idle();
+        this.addChild(player);
+
+        sky.touchEnabled = true;
+        sky.addEventListener(egret.TouchEvent.TOUCH_END, (e) => {
+            player.move(e.stageX, e.stageY);
+        }, this);
     }
 
     /**

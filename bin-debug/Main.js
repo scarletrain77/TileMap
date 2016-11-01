@@ -151,6 +151,13 @@ var Main = (function (_super) {
             var bitmap = new Tile(tiledata);
             this.addChild(bitmap);
         }
+        var player = new Player();
+        player.idle();
+        this.addChild(player);
+        sky.touchEnabled = true;
+        sky.addEventListener(egret.TouchEvent.TOUCH_END, function (e) {
+            player.move(e.stageX, e.stageY);
+        }, this);
     };
     /**
      * 根据name关键字创建一个Bitmap对象。name属性请参考resources/resource.json配置文件的内容。
