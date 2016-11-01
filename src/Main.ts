@@ -95,95 +95,15 @@ class Main extends egret.DisplayObjectContainer {
         sky.width = stageW;
         sky.height = stageH;
 
-        var config = [
-            { x: 0, y: 0, walkable: true, image: "road_jpg" },
-            { x: 0, y: 1, walkable: true, image: "road_jpg" },
-            { x: 0, y: 2, walkable: true, image: "road_jpg" },
-            { x: 0, y: 3, walkable: true, image: "road_jpg" },
-            { x: 0, y: 4, walkable: true, image: "road_jpg" },
-            { x: 0, y: 5, walkable: true, image: "road_jpg" },
-            { x: 0, y: 6, walkable: true, image: "road_jpg" },
-            { x: 0, y: 7, walkable: true, image: "road_jpg" },
-            { x: 1, y: 0, walkable: true, image: "road_jpg" },
-            { x: 1, y: 1, walkable: true, image: "road_jpg" },
-            { x: 1, y: 2, walkable: true, image: "road_jpg" },
-            { x: 1, y: 3, walkable: true, image: "road_jpg" },
-            { x: 1, y: 4, walkable: true, image: "road_jpg" },
-            { x: 1, y: 5, walkable: true, image: "road_jpg" },
-            { x: 1, y: 6, walkable: true, image: "road_jpg" },
-            { x: 1, y: 7, walkable: true, image: "road_jpg" },
-            { x: 2, y: 0, walkable: true, image: "road_jpg" },
-            { x: 2, y: 1, walkable: true, image: "road_jpg" },
-            { x: 2, y: 2, walkable: true, image: "road_jpg" },
-            { x: 2, y: 3, walkable: true, image: "road_jpg" },
-            { x: 2, y: 4, walkable: true, image: "road_jpg" },
-            { x: 2, y: 5, walkable: false, image: "block_jpg" },
-            { x: 2, y: 6, walkable: false, image: "block_jpg" },
-            { x: 2, y: 7, walkable: true, image: "road_jpg" },
-            { x: 3, y: 0, walkable: true, image: "road_jpg" },
-            { x: 3, y: 1, walkable: true, image: "road_jpg" },
-            { x: 3, y: 2, walkable: true, image: "road_jpg" },
-            { x: 3, y: 3, walkable: true, image: "road_jpg" },
-            { x: 3, y: 4, walkable: true, image: "road_jpg" },
-            { x: 3, y: 5, walkable: true, image: "road_jpg" },
-            { x: 3, y: 6, walkable: false, image: "block_jpg" },
-            { x: 3, y: 7, walkable: true, image: "road_jpg" },
-            { x: 4, y: 0, walkable: true, image: "road_jpg" },
-            { x: 4, y: 1, walkable: true, image: "road_jpg" },
-            { x: 4, y: 2, walkable: true, image: "road_jpg" },
-            { x: 4, y: 3, walkable: true, image: "road_jpg" },
-            { x: 4, y: 4, walkable: true, image: "road_jpg" },
-            { x: 4, y: 5, walkable: true, image: "road_jpg" },
-            { x: 4, y: 6, walkable: false, image: "block_jpg" },
-            { x: 4, y: 7, walkable: true, image: "road_jpg" },
-            { x: 5, y: 0, walkable: true, image: "road_jpg" },
-            { x: 5, y: 1, walkable: true, image: "road_jpg" },
-            { x: 5, y: 2, walkable: true, image: "road_jpg" },
-            { x: 5, y: 3, walkable: true, image: "road_jpg" },
-            { x: 5, y: 4, walkable: true, image: "road_jpg" },
-            { x: 5, y: 5, walkable: true, image: "road_jpg" },
-            { x: 5, y: 6, walkable: false, image: "block_jpg" },
-            { x: 5, y: 7, walkable: true, image: "road_jpg" },
-            { x: 6, y: 0, walkable: true, image: "road_jpg" },
-            { x: 6, y: 1, walkable: true, image: "road_jpg" },
-            { x: 6, y: 2, walkable: true, image: "road_jpg" },
-            { x: 6, y: 3, walkable: true, image: "road_jpg" },
-            { x: 6, y: 4, walkable: true, image: "road_jpg" },
-            { x: 6, y: 5, walkable: true, image: "road_jpg" },
-            { x: 6, y: 6, walkable: true, image: "road_jpg" },
-            { x: 6, y: 7, walkable: true, image: "road_jpg" },
-            { x: 7, y: 0, walkable: true, image: "road_jpg" },
-            { x: 7, y: 1, walkable: true, image: "road_jpg" },
-            { x: 7, y: 2, walkable: true, image: "road_jpg" },
-            { x: 7, y: 3, walkable: true, image: "road_jpg" },
-            { x: 7, y: 4, walkable: true, image: "road_jpg" },
-            { x: 7, y: 5, walkable: true, image: "road_jpg" },
-            { x: 7, y: 6, walkable: true, image: "road_jpg" },
-            { x: 7, y: 7, walkable: true, image: "road_jpg" }
-        ]
-
+       
         //var container = new egret.DisplayObjectContainer();
-        for (var i = 0; i < config.length; i++) {
-            var tiledata: TileData = new TileData(config[i].walkable, config[i].image, config[i].x, config[i].y);
-            var bitmap: Tile = new Tile(tiledata);
-            this.addChild(bitmap);
-            /*var tile = config[i];
-            var bitmap = new egret.Bitmap();
-            bitmap.texture = RES.getRes(tile.image);
-            bitmap.x = tile.x;
-            bitmap.y = tile.y;
-            this.addChild(bitmap);
-            console.log("第"+i+"x:"+bitmap.x + "y"+bitmap.y);*/
-        }
-
-        var player = new Player();
-        player.idle();
-        this.addChild(player);
-
+       
         sky.touchEnabled = true;
         sky.addEventListener(egret.TouchEvent.TOUCH_END, (e) => {
-            player.move(e.stageX, e.stageY);
+            //player.move(e.stageX, e.stageY);
         }, this);
+//        var player = new Player();
+        this.addChild(new TileMap());
     }
 
     /**
@@ -198,30 +118,6 @@ class Main extends egret.DisplayObjectContainer {
     }
 }
 
-var TILESIZEX = 80;
-var TILESIZEY = 142;
+//var TILESIZEX = 80;
+//var TILESIZEY = 142;
 
-class Tile extends egret.DisplayObjectContainer {
-    data: TileData;
-    constructor(data: TileData) {
-        super();
-        this.data = data;
-        var bitmap = new egret.Bitmap();
-        this.addChild(bitmap);
-        bitmap.texture = RES.getRes(data.image);
-        bitmap.x = data.x * TILESIZEX;
-        bitmap.y = data.y * TILESIZEY;
-    }
-}
-
-class TileData extends egret.DisplayObjectContainer {
-    public walkable: boolean;
-    public image: string;
-    constructor(walkable: boolean, image: string, x: number, y: number) {
-        super();
-        this.walkable = walkable;
-        this.image = image;
-        this.x = x;
-        this.y = y;
-    }
-}

@@ -79,85 +79,13 @@ var Main = (function (_super) {
         var stageH = this.stage.stageHeight;
         sky.width = stageW;
         sky.height = stageH;
-        var config = [
-            { x: 0, y: 0, walkable: true, image: "road_jpg" },
-            { x: 0, y: 1, walkable: true, image: "road_jpg" },
-            { x: 0, y: 2, walkable: true, image: "road_jpg" },
-            { x: 0, y: 3, walkable: true, image: "road_jpg" },
-            { x: 0, y: 4, walkable: true, image: "road_jpg" },
-            { x: 0, y: 5, walkable: true, image: "road_jpg" },
-            { x: 0, y: 6, walkable: true, image: "road_jpg" },
-            { x: 0, y: 7, walkable: true, image: "road_jpg" },
-            { x: 1, y: 0, walkable: true, image: "road_jpg" },
-            { x: 1, y: 1, walkable: true, image: "road_jpg" },
-            { x: 1, y: 2, walkable: true, image: "road_jpg" },
-            { x: 1, y: 3, walkable: true, image: "road_jpg" },
-            { x: 1, y: 4, walkable: true, image: "road_jpg" },
-            { x: 1, y: 5, walkable: true, image: "road_jpg" },
-            { x: 1, y: 6, walkable: true, image: "road_jpg" },
-            { x: 1, y: 7, walkable: true, image: "road_jpg" },
-            { x: 2, y: 0, walkable: true, image: "road_jpg" },
-            { x: 2, y: 1, walkable: true, image: "road_jpg" },
-            { x: 2, y: 2, walkable: true, image: "road_jpg" },
-            { x: 2, y: 3, walkable: true, image: "road_jpg" },
-            { x: 2, y: 4, walkable: true, image: "road_jpg" },
-            { x: 2, y: 5, walkable: false, image: "block_jpg" },
-            { x: 2, y: 6, walkable: false, image: "block_jpg" },
-            { x: 2, y: 7, walkable: true, image: "road_jpg" },
-            { x: 3, y: 0, walkable: true, image: "road_jpg" },
-            { x: 3, y: 1, walkable: true, image: "road_jpg" },
-            { x: 3, y: 2, walkable: true, image: "road_jpg" },
-            { x: 3, y: 3, walkable: true, image: "road_jpg" },
-            { x: 3, y: 4, walkable: true, image: "road_jpg" },
-            { x: 3, y: 5, walkable: true, image: "road_jpg" },
-            { x: 3, y: 6, walkable: false, image: "block_jpg" },
-            { x: 3, y: 7, walkable: true, image: "road_jpg" },
-            { x: 4, y: 0, walkable: true, image: "road_jpg" },
-            { x: 4, y: 1, walkable: true, image: "road_jpg" },
-            { x: 4, y: 2, walkable: true, image: "road_jpg" },
-            { x: 4, y: 3, walkable: true, image: "road_jpg" },
-            { x: 4, y: 4, walkable: true, image: "road_jpg" },
-            { x: 4, y: 5, walkable: true, image: "road_jpg" },
-            { x: 4, y: 6, walkable: false, image: "block_jpg" },
-            { x: 4, y: 7, walkable: true, image: "road_jpg" },
-            { x: 5, y: 0, walkable: true, image: "road_jpg" },
-            { x: 5, y: 1, walkable: true, image: "road_jpg" },
-            { x: 5, y: 2, walkable: true, image: "road_jpg" },
-            { x: 5, y: 3, walkable: true, image: "road_jpg" },
-            { x: 5, y: 4, walkable: true, image: "road_jpg" },
-            { x: 5, y: 5, walkable: true, image: "road_jpg" },
-            { x: 5, y: 6, walkable: false, image: "block_jpg" },
-            { x: 5, y: 7, walkable: true, image: "road_jpg" },
-            { x: 6, y: 0, walkable: true, image: "road_jpg" },
-            { x: 6, y: 1, walkable: true, image: "road_jpg" },
-            { x: 6, y: 2, walkable: true, image: "road_jpg" },
-            { x: 6, y: 3, walkable: true, image: "road_jpg" },
-            { x: 6, y: 4, walkable: true, image: "road_jpg" },
-            { x: 6, y: 5, walkable: true, image: "road_jpg" },
-            { x: 6, y: 6, walkable: true, image: "road_jpg" },
-            { x: 6, y: 7, walkable: true, image: "road_jpg" },
-            { x: 7, y: 0, walkable: true, image: "road_jpg" },
-            { x: 7, y: 1, walkable: true, image: "road_jpg" },
-            { x: 7, y: 2, walkable: true, image: "road_jpg" },
-            { x: 7, y: 3, walkable: true, image: "road_jpg" },
-            { x: 7, y: 4, walkable: true, image: "road_jpg" },
-            { x: 7, y: 5, walkable: true, image: "road_jpg" },
-            { x: 7, y: 6, walkable: true, image: "road_jpg" },
-            { x: 7, y: 7, walkable: true, image: "road_jpg" }
-        ];
         //var container = new egret.DisplayObjectContainer();
-        for (var i = 0; i < config.length; i++) {
-            var tiledata = new TileData(config[i].walkable, config[i].image, config[i].x, config[i].y);
-            var bitmap = new Tile(tiledata);
-            this.addChild(bitmap);
-        }
-        var player = new Player();
-        player.idle();
-        this.addChild(player);
         sky.touchEnabled = true;
         sky.addEventListener(egret.TouchEvent.TOUCH_END, function (e) {
-            player.move(e.stageX, e.stageY);
+            //player.move(e.stageX, e.stageY);
         }, this);
+        //        var player = new Player();
+        this.addChild(new TileMap());
     };
     /**
      * 根据name关键字创建一个Bitmap对象。name属性请参考resources/resource.json配置文件的内容。
@@ -172,34 +100,6 @@ var Main = (function (_super) {
     return Main;
 }(egret.DisplayObjectContainer));
 egret.registerClass(Main,'Main');
-var TILESIZEX = 80;
-var TILESIZEY = 142;
-var Tile = (function (_super) {
-    __extends(Tile, _super);
-    function Tile(data) {
-        _super.call(this);
-        this.data = data;
-        var bitmap = new egret.Bitmap();
-        this.addChild(bitmap);
-        bitmap.texture = RES.getRes(data.image);
-        bitmap.x = data.x * TILESIZEX;
-        bitmap.y = data.y * TILESIZEY;
-    }
-    var d = __define,c=Tile,p=c.prototype;
-    return Tile;
-}(egret.DisplayObjectContainer));
-egret.registerClass(Tile,'Tile');
-var TileData = (function (_super) {
-    __extends(TileData, _super);
-    function TileData(walkable, image, x, y) {
-        _super.call(this);
-        this.walkable = walkable;
-        this.image = image;
-        this.x = x;
-        this.y = y;
-    }
-    var d = __define,c=TileData,p=c.prototype;
-    return TileData;
-}(egret.DisplayObjectContainer));
-egret.registerClass(TileData,'TileData');
+//var TILESIZEX = 80;
+//var TILESIZEY = 142;
 //# sourceMappingURL=Main.js.map
