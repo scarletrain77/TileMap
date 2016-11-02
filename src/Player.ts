@@ -87,9 +87,9 @@ class PlayerMoveState extends PlayerState {
         var tw = egret.Tween.get(this._player._body);
         for (var i = 0; i < this._targetX.length; i++) {
             if (i == this._targetX.length - 1) {
-                tw.to({ x: this._targetX[i], y: this._targetY[i] }, 500).call(this._player.idle, this._player);
+                tw.to({ x: this._targetX[i], y: this._targetY[i] }, 200).call(this._player.idle, this._player);
             } else {
-                tw.to({ x: this._targetX[i], y: this._targetY[i] }, 500);
+                tw.to({ x: this._targetX[i], y: this._targetY[i] }, 200);
             }
         }
         console.log("playerX:" + this._player._body.x + "playerY:" + this._player._body.y);

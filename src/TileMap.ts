@@ -3,121 +3,123 @@ class TileMap extends egret.DisplayObjectContainer {
     _player: Player;
     _block: egret.Bitmap;
     _config: Array<any>;
+    //地图行列数
     _column: number = 10;
     _row: number = 10;
-    _moveX:number[];
-    _moveY:number[];
+    //移动坐标的数组
+    _moveX: number[];
+    _moveY: number[];
     constructor() {
         super();
         this._config = [
             { x: 0, y: 0, walkable: true, image: "road_jpg" },
-            { x: 0, y: 1, walkable: true, image: "road_jpg" },
-            { x: 0, y: 2, walkable: true, image: "road_jpg" },
-            { x: 0, y: 3, walkable: true, image: "road_jpg" },
-            { x: 0, y: 4, walkable: true, image: "road_jpg" },
-            { x: 0, y: 5, walkable: true, image: "road_jpg" },
-            { x: 0, y: 6, walkable: true, image: "road_jpg" },
-            { x: 0, y: 7, walkable: true, image: "road_jpg" },
-            { x: 0, y: 8, walkable: true, image: "road_jpg" },
-            { x: 0, y: 9, walkable: true, image: "road_jpg" },
-
             { x: 1, y: 0, walkable: true, image: "road_jpg" },
-            { x: 1, y: 1, walkable: true, image: "road_jpg" },
-            { x: 1, y: 2, walkable: true, image: "road_jpg" },
-            { x: 1, y: 3, walkable: true, image: "road_jpg" },
-            { x: 1, y: 4, walkable: true, image: "road_jpg" },
-            { x: 1, y: 5, walkable: true, image: "road_jpg" },
-            { x: 1, y: 6, walkable: true, image: "road_jpg" },
-            { x: 1, y: 7, walkable: true, image: "road_jpg" },
-            { x: 1, y: 8, walkable: true, image: "road_jpg" },
-            { x: 1, y: 9, walkable: true, image: "road_jpg" },
-
             { x: 2, y: 0, walkable: true, image: "road_jpg" },
-            { x: 2, y: 1, walkable: true, image: "road_jpg" },
-            { x: 2, y: 2, walkable: true, image: "road_jpg" },
-            { x: 2, y: 3, walkable: true, image: "road_jpg" },
-            { x: 2, y: 4, walkable: true, image: "road_jpg" },
-            { x: 2, y: 5, walkable: false, image: "block_jpg" },
-            { x: 2, y: 6, walkable: false, image: "block_jpg" },
-            { x: 2, y: 7, walkable: true, image: "road_jpg" },
-            { x: 2, y: 8, walkable: true, image: "road_jpg" },
-            { x: 2, y: 9, walkable: true, image: "road_jpg" },
-
             { x: 3, y: 0, walkable: true, image: "road_jpg" },
-            { x: 3, y: 1, walkable: true, image: "road_jpg" },
-            { x: 3, y: 2, walkable: true, image: "road_jpg" },
-            { x: 3, y: 3, walkable: true, image: "road_jpg" },
-            { x: 3, y: 4, walkable: true, image: "road_jpg" },
-            { x: 3, y: 5, walkable: true, image: "road_jpg" },
-            { x: 3, y: 6, walkable: false, image: "block_jpg" },
-            { x: 3, y: 7, walkable: true, image: "road_jpg" },
-            { x: 3, y: 8, walkable: true, image: "road_jpg" },
-            { x: 3, y: 9, walkable: true, image: "road_jpg" },
-
             { x: 4, y: 0, walkable: true, image: "road_jpg" },
-            { x: 4, y: 1, walkable: true, image: "road_jpg" },
-            { x: 4, y: 2, walkable: true, image: "road_jpg" },
-            { x: 4, y: 3, walkable: true, image: "road_jpg" },
-            { x: 4, y: 4, walkable: true, image: "road_jpg" },
-            { x: 4, y: 5, walkable: true, image: "road_jpg" },
-            { x: 4, y: 6, walkable: false, image: "block_jpg" },
-            { x: 4, y: 7, walkable: true, image: "road_jpg" },
-            { x: 4, y: 8, walkable: true, image: "road_jpg" },
-            { x: 4, y: 9, walkable: true, image: "road_jpg" },
-
             { x: 5, y: 0, walkable: true, image: "road_jpg" },
-            { x: 5, y: 1, walkable: true, image: "road_jpg" },
-            { x: 5, y: 2, walkable: true, image: "road_jpg" },
-            { x: 5, y: 3, walkable: true, image: "road_jpg" },
-            { x: 5, y: 4, walkable: true, image: "road_jpg" },
-            { x: 5, y: 5, walkable: true, image: "road_jpg" },
-            { x: 5, y: 6, walkable: false, image: "block_jpg" },
-            { x: 5, y: 7, walkable: true, image: "road_jpg" },
-            { x: 5, y: 8, walkable: true, image: "road_jpg" },
-            { x: 5, y: 9, walkable: true, image: "road_jpg" },
-
             { x: 6, y: 0, walkable: true, image: "road_jpg" },
-            { x: 6, y: 1, walkable: false, image: "block_jpg" },
-            { x: 6, y: 2, walkable: false, image: "block_jpg" },
-            { x: 6, y: 3, walkable: false, image: "block_jpg" },
-            { x: 6, y: 4, walkable: false, image: "block_jpg" },
-            { x: 6, y: 5, walkable: false, image: "block_jpg" },
-            { x: 6, y: 6, walkable: false, image: "block_jpg" },
-            { x: 6, y: 7, walkable: false, image: "block_jpg" },
-            { x: 6, y: 8, walkable: false, image: "block_jpg" },
-            { x: 6, y: 9, walkable: true, image: "road_jpg" },
-
             { x: 7, y: 0, walkable: true, image: "road_jpg" },
-            { x: 7, y: 1, walkable: true, image: "road_jpg" },
-            { x: 7, y: 2, walkable: true, image: "road_jpg" },
-            { x: 7, y: 3, walkable: true, image: "road_jpg" },
-            { x: 7, y: 4, walkable: true, image: "road_jpg" },
-            { x: 7, y: 5, walkable: true, image: "road_jpg" },
-            { x: 7, y: 6, walkable: true, image: "road_jpg" },
-            { x: 7, y: 7, walkable: true, image: "road_jpg" },
-            { x: 7, y: 8, walkable: true, image: "road_jpg" },
-            { x: 7, y: 9, walkable: true, image: "road_jpg" },
-
             { x: 8, y: 0, walkable: true, image: "road_jpg" },
-            { x: 8, y: 1, walkable: true, image: "road_jpg" },
-            { x: 8, y: 2, walkable: true, image: "road_jpg" },
-            { x: 8, y: 3, walkable: true, image: "road_jpg" },
-            { x: 8, y: 4, walkable: true, image: "road_jpg" },
-            { x: 8, y: 5, walkable: true, image: "road_jpg" },
-            { x: 8, y: 6, walkable: true, image: "road_jpg" },
-            { x: 8, y: 7, walkable: true, image: "road_jpg" },
-            { x: 8, y: 8, walkable: true, image: "road_jpg" },
-            { x: 8, y: 9, walkable: true, image: "road_jpg" },
-
             { x: 9, y: 0, walkable: true, image: "road_jpg" },
+
+            { x: 0, y: 1, walkable: true, image: "road_jpg" },
+            { x: 1, y: 1, walkable: true, image: "road_jpg" },
+            { x: 2, y: 1, walkable: true, image: "road_jpg" },
+            { x: 3, y: 1, walkable: true, image: "road_jpg" },
+            { x: 4, y: 1, walkable: true, image: "road_jpg" },
+            { x: 5, y: 1, walkable: true, image: "road_jpg" },
+            { x: 6, y: 1, walkable: false, image: "block_jpg" },
+            { x: 7, y: 1, walkable: true, image: "road_jpg" },
+            { x: 8, y: 1, walkable: true, image: "road_jpg" },
             { x: 9, y: 1, walkable: true, image: "road_jpg" },
+
+            { x: 0, y: 2, walkable: true, image: "road_jpg" },
+            { x: 1, y: 2, walkable: true, image: "road_jpg" },
+            { x: 2, y: 2, walkable: true, image: "road_jpg" },
+            { x: 3, y: 2, walkable: true, image: "road_jpg" },
+            { x: 4, y: 2, walkable: true, image: "road_jpg" },
+            { x: 5, y: 2, walkable: true, image: "road_jpg" },
+            { x: 6, y: 2, walkable: false, image: "block_jpg" },
+            { x: 7, y: 2, walkable: true, image: "road_jpg" },
+            { x: 8, y: 2, walkable: true, image: "road_jpg" },
             { x: 9, y: 2, walkable: true, image: "road_jpg" },
+
+            { x: 0, y: 3, walkable: true, image: "road_jpg" },
+            { x: 1, y: 3, walkable: true, image: "road_jpg" },
+            { x: 2, y: 3, walkable: true, image: "road_jpg" },
+            { x: 3, y: 3, walkable: true, image: "road_jpg" },
+            { x: 4, y: 3, walkable: true, image: "road_jpg" },
+            { x: 5, y: 3, walkable: true, image: "road_jpg" },
+            { x: 6, y: 3, walkable: false, image: "block_jpg" },
+            { x: 7, y: 3, walkable: true, image: "road_jpg" },
+            { x: 8, y: 3, walkable: true, image: "road_jpg" },
             { x: 9, y: 3, walkable: true, image: "road_jpg" },
+
+            { x: 0, y: 4, walkable: true, image: "road_jpg" },
+            { x: 1, y: 4, walkable: true, image: "road_jpg" },
+            { x: 2, y: 4, walkable: true, image: "road_jpg" },
+            { x: 3, y: 4, walkable: true, image: "road_jpg" },
+            { x: 4, y: 4, walkable: true, image: "road_jpg" },
+            { x: 5, y: 4, walkable: true, image: "road_jpg" },
+            { x: 6, y: 4, walkable: false, image: "block_jpg" },
+            { x: 7, y: 4, walkable: true, image: "road_jpg" },
+            { x: 8, y: 4, walkable: true, image: "road_jpg" },
             { x: 9, y: 4, walkable: true, image: "road_jpg" },
+
+            { x: 0, y: 5, walkable: true, image: "road_jpg" },
+            { x: 1, y: 5, walkable: true, image: "road_jpg" },
+            { x: 2, y: 5, walkable: false, image: "block_jpg" },
+            { x: 3, y: 5, walkable: true, image: "road_jpg" },
+            { x: 4, y: 5, walkable: true, image: "road_jpg" },
+            { x: 5, y: 5, walkable: true, image: "road_jpg" },
+            { x: 6, y: 5, walkable: false, image: "block_jpg" },
+            { x: 7, y: 5, walkable: true, image: "road_jpg" },
+            { x: 8, y: 5, walkable: true, image: "road_jpg" },
             { x: 9, y: 5, walkable: true, image: "road_jpg" },
+
+            { x: 0, y: 6, walkable: true, image: "road_jpg" },
+            { x: 1, y: 6, walkable: true, image: "road_jpg" },
+            { x: 2, y: 6, walkable: false, image: "block_jpg" },
+            { x: 3, y: 6, walkable: false, image: "block_jpg" },
+            { x: 4, y: 6, walkable: false, image: "block_jpg" },
+            { x: 5, y: 6, walkable: false, image: "block_jpg" },
+            { x: 6, y: 6, walkable: false, image: "block_jpg" },
+            { x: 7, y: 6, walkable: true, image: "road_jpg" },
+            { x: 8, y: 6, walkable: true, image: "road_jpg" },
             { x: 9, y: 6, walkable: true, image: "road_jpg" },
+
+            { x: 0, y: 7, walkable: true, image: "road_jpg" },
+            { x: 1, y: 7, walkable: true, image: "road_jpg" },
+            { x: 2, y: 7, walkable: true, image: "road_jpg" },
+            { x: 3, y: 7, walkable: true, image: "road_jpg" },
+            { x: 4, y: 7, walkable: true, image: "road_jpg" },
+            { x: 5, y: 7, walkable: true, image: "road_jpg" },
+            { x: 6, y: 7, walkable: false, image: "block_jpg" },
+            { x: 7, y: 7, walkable: true, image: "road_jpg" },
+            { x: 8, y: 7, walkable: true, image: "road_jpg" },
             { x: 9, y: 7, walkable: true, image: "road_jpg" },
+
+            { x: 0, y: 8, walkable: true, image: "road_jpg" },
+            { x: 1, y: 8, walkable: true, image: "road_jpg" },
+            { x: 2, y: 8, walkable: true, image: "road_jpg" },
+            { x: 3, y: 8, walkable: true, image: "road_jpg" },
+            { x: 4, y: 8, walkable: true, image: "road_jpg" },
+            { x: 5, y: 8, walkable: true, image: "road_jpg" },
+            { x: 6, y: 8, walkable: false, image: "block_jpg" },
+            { x: 7, y: 8, walkable: true, image: "road_jpg" },
+            { x: 8, y: 8, walkable: true, image: "road_jpg" },
             { x: 9, y: 8, walkable: true, image: "road_jpg" },
+
+            { x: 0, y: 9, walkable: true, image: "road_jpg" },
+            { x: 1, y: 9, walkable: true, image: "road_jpg" },
+            { x: 2, y: 9, walkable: true, image: "road_jpg" },
+            { x: 3, y: 9, walkable: true, image: "road_jpg" },
+            { x: 4, y: 9, walkable: true, image: "road_jpg" },
+            { x: 5, y: 9, walkable: true, image: "road_jpg" },
+            { x: 6, y: 9, walkable: true, image: "road_jpg" },
+            { x: 7, y: 9, walkable: true, image: "road_jpg" },
+            { x: 8, y: 9, walkable: true, image: "road_jpg" },
             { x: 9, y: 9, walkable: true, image: "road_jpg" },
         ]
         for (var i = 0; i < this._config.length; i++) {
@@ -133,7 +135,7 @@ class TileMap extends egret.DisplayObjectContainer {
             this._moveX = new Array();
             this._moveY = new Array();
             this.findPathForNode(e.stageX, e.stageY);
-            console.log("point:x:" + e.stageX + "y:" + e.stageY);
+            //console.log("point:x:" + e.stageX + "y:" + e.stageY);
         }, this);
     }
 
@@ -149,11 +151,11 @@ class TileMap extends egret.DisplayObjectContainer {
         if (astar.findPath(grid)) {
             //var alphax = 1;
             for (var i = 0; i < astar.path.length; i++) {
-                var targetX: number = astar.path[i].x * Tile.TILE_SIZE + Tile.TILE_SIZE / 2 - Body.RUN_BODY_W/2;
-                var targetY: number = astar.path[i].y * Tile.TILE_SIZE + Tile.TILE_SIZE / 2 - Body.RUN_BODY_H/2;
+                var targetX: number = astar.path[i].x * Tile.TILE_SIZE + Tile.TILE_SIZE / 2 - Body.RUN_BODY_W / 2;
+                var targetY: number = astar.path[i].y * Tile.TILE_SIZE + Tile.TILE_SIZE / 2 - Body.RUN_BODY_H / 2;
                 this._moveX[i] = targetX;
                 this._moveY[i] = targetY;
-                
+
                 //用圆表示路径
                 /*var circle = new egret.Shape();
                 circle.graphics.beginFill(0xff000, alphax);
@@ -175,6 +177,7 @@ class TileMap extends egret.DisplayObjectContainer {
 }
 
 class Tile extends egret.DisplayObjectContainer {
+    //地图的大小
     public static TILE_SIZE = 64;
     data: TileData;
     constructor(data: TileData) {

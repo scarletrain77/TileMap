@@ -73,18 +73,6 @@ var Main = (function (_super) {
      * Create a game scene
      */
     p.createGameScene = function () {
-        //var sky: egret.Bitmap = this.createBitmapByName("bg_jpg");
-        //this.addChild(sky);
-        //var stageW: number = this.stage.stageWidth;
-        //var stageH: number = this.stage.stageHeight;
-        //sky.width = stageW;
-        //sky.height = stageH;
-        //var container = new egret.DisplayObjectContainer();
-        //sky.touchEnabled = true;
-        //sky.addEventListener(egret.TouchEvent.TOUCH_END, (e) => {
-        //player.move(e.stageX, e.stageY);
-        //}, this);
-        //        var player = new Player();
         this.addChild(new TileMap());
     };
     /**
@@ -100,6 +88,4 @@ var Main = (function (_super) {
     return Main;
 }(egret.DisplayObjectContainer));
 egret.registerClass(Main,'Main');
-//var TILESIZEX = 80;
-//var TILESIZEY = 142;
 //# sourceMappingURL=Main.js.map

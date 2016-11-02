@@ -3,7 +3,7 @@ var AStar = (function () {
         this._closed = new Array();
         this._open = new Array();
         this._path = new Array();
-        this._heuristic = this.diagonal;
+        this._heuristic = this.manhattan;
         this._straightCost = 1.0;
         this._diagCost = Math.SQRT2;
     }
@@ -30,6 +30,7 @@ var AStar = (function () {
                 for (var j = startY; j <= endY; j++) {
                     var test = this._grid.getNode(i, j);
                     if (test == node || !test.walkable)
+                        //if (test == node || !test.walkable || !this._grid.getNode(node.x, test.y).walkable || !this._grid.getNode(test.x, node.y).walkable)
                         continue;
                     var cost = this._straightCost;
                     if (!((node.x == test.x) || node.y == test.y)) {
@@ -61,7 +62,7 @@ var AStar = (function () {
                 //trace
                 return false;
             }
-            //remember debug there
+            //书上为sortOn("f")，即对f进行排序
             this._open.sort(function (a, b) {
                 return a.f - b.f;
             });
@@ -116,7 +117,6 @@ var AStar = (function () {
         var straight = dx + dy;
         return this._diagCost * diag + this._straightCost * (straight - 2 * diag);
     };
-    //debug:public visited(): TileNode[]?
     p.getVisited = function () {
         return this._closed.concat(this._open);
     };

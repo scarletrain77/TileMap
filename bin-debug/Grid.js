@@ -7,7 +7,8 @@ var Grid = (function () {
             this._nodes[i] = new Array();
             for (var j = 0; j < this._numRows; j++) {
                 this._nodes[i][j] = new NodeNew(i, j);
-                this._nodes[i][j].walkable = tileData[this._numCols * i + j].walkable;
+                //walkable在TileDate里的位置转换为Nodes中的位置
+                this._nodes[i][j].walkable = tileData[i + j * this._numRows].walkable;
             }
         }
     }

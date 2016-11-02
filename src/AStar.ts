@@ -15,7 +15,7 @@ class AStar {
         this._closed = new Array();
         this._open = new Array();
         this._path = new Array();
-        this._heuristic = this.diagonal;
+        this._heuristic = this.manhattan;
         this._straightCost = 1.0;
         this._diagCost = Math.SQRT2;
     }
@@ -46,7 +46,9 @@ class AStar {
             for (var i = startX; i <= endX; i++) {
                 for (var j = startY; j <= endY; j++) {
                     var test: NodeNew = this._grid.getNode(i, j);
-                    if (test == node || !test.walkable) continue;
+                    if (test == node || !test.walkable)
+                    //if (test == node || !test.walkable || !this._grid.getNode(node.x, test.y).walkable || !this._grid.getNode(test.x, node.y).walkable)
+                        continue;
                     var cost: number = this._straightCost;
                     if (!((node.x == test.x) || node.y == test.y)) {
                         cost = this._diagCost;
@@ -76,7 +78,7 @@ class AStar {
                 //trace
                 return false;
             }
-            //remember debug there
+            //书上为sortOn("f")，即对f进行排序
             this._open.sort(function (a, b) {
                 return a.f - b.f;
             });
@@ -137,24 +139,8 @@ class AStar {
         return this._diagCost * diag + this._straightCost * (straight - 2 * diag);
     }
 
-    //debug:public visited(): TileNode[]?
     public getVisited(): Array<any> {
         return this._closed.concat(this._open);
     }
-
-    //debug
-    /*public validNode(node: NodeNew, currentNode: NodeNew): boolean {
-        if (currentNode == node || !node.walkable) {
-            return false;
-        }
-        if (!this._grid._nodes[currentNode.x][node.y].walkable) {
-            return false;
-        }
-        if (!this._grid._nodes[node.x][currentNode.y].walkable) {
-            return false;
-        }
-            return true;
-
-        }*/
 }
 
