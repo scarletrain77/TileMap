@@ -1,5 +1,8 @@
 var AStar = (function () {
     function AStar() {
+        this._closed = new Array();
+        this._open = new Array();
+        this._path = new Array();
         this._heuristic = this.diagonal;
         this._straightCost = 1.0;
         this._diagCost = Math.SQRT2;

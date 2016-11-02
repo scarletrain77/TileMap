@@ -46,10 +46,10 @@ class Body extends egret.DisplayObjectContainer {
         }
         if (this.isIdleChild == true) {
             this.removeChild(this.dogIdleArray[this.frameNumber-1]);
-            console.log("remove idle"+ this.frameNumber);
+            //console.log("remove idle"+ this.frameNumber);
         } else if (this.isRunChild == true) {
             this.removeChild(this.dogRunArray[this.frameNumber-1]);
-            console.log("remove run" + this.frameNumber);
+            //console.log("remove run" + this.frameNumber);
         }
         this.isIdleChild = false;
         this.isRunChild = false;

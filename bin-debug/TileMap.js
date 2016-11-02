@@ -8,8 +8,8 @@ var TileMap = (function (_super) {
         //_touchY: number;
         //_targetX: number;
         //_targetY: number;
-        this._column = 8;
-        this._row = 8;
+        this._column = 10;
+        this._row = 10;
         this._config = [
             { x: 0, y: 0, walkable: true, image: "road_jpg" },
             { x: 0, y: 1, walkable: true, image: "road_jpg" },
@@ -19,6 +19,8 @@ var TileMap = (function (_super) {
             { x: 0, y: 5, walkable: true, image: "road_jpg" },
             { x: 0, y: 6, walkable: true, image: "road_jpg" },
             { x: 0, y: 7, walkable: true, image: "road_jpg" },
+            { x: 0, y: 8, walkable: true, image: "road_jpg" },
+            { x: 0, y: 9, walkable: true, image: "road_jpg" },
             { x: 1, y: 0, walkable: true, image: "road_jpg" },
             { x: 1, y: 1, walkable: true, image: "road_jpg" },
             { x: 1, y: 2, walkable: true, image: "road_jpg" },
@@ -27,6 +29,8 @@ var TileMap = (function (_super) {
             { x: 1, y: 5, walkable: true, image: "road_jpg" },
             { x: 1, y: 6, walkable: true, image: "road_jpg" },
             { x: 1, y: 7, walkable: true, image: "road_jpg" },
+            { x: 1, y: 8, walkable: true, image: "road_jpg" },
+            { x: 1, y: 9, walkable: true, image: "road_jpg" },
             { x: 2, y: 0, walkable: true, image: "road_jpg" },
             { x: 2, y: 1, walkable: true, image: "road_jpg" },
             { x: 2, y: 2, walkable: true, image: "road_jpg" },
@@ -35,6 +39,8 @@ var TileMap = (function (_super) {
             { x: 2, y: 5, walkable: false, image: "block_jpg" },
             { x: 2, y: 6, walkable: false, image: "block_jpg" },
             { x: 2, y: 7, walkable: true, image: "road_jpg" },
+            { x: 2, y: 8, walkable: true, image: "road_jpg" },
+            { x: 2, y: 9, walkable: true, image: "road_jpg" },
             { x: 3, y: 0, walkable: true, image: "road_jpg" },
             { x: 3, y: 1, walkable: true, image: "road_jpg" },
             { x: 3, y: 2, walkable: true, image: "road_jpg" },
@@ -43,6 +49,8 @@ var TileMap = (function (_super) {
             { x: 3, y: 5, walkable: true, image: "road_jpg" },
             { x: 3, y: 6, walkable: false, image: "block_jpg" },
             { x: 3, y: 7, walkable: true, image: "road_jpg" },
+            { x: 3, y: 8, walkable: true, image: "road_jpg" },
+            { x: 3, y: 9, walkable: true, image: "road_jpg" },
             { x: 4, y: 0, walkable: true, image: "road_jpg" },
             { x: 4, y: 1, walkable: true, image: "road_jpg" },
             { x: 4, y: 2, walkable: true, image: "road_jpg" },
@@ -51,6 +59,8 @@ var TileMap = (function (_super) {
             { x: 4, y: 5, walkable: true, image: "road_jpg" },
             { x: 4, y: 6, walkable: false, image: "block_jpg" },
             { x: 4, y: 7, walkable: true, image: "road_jpg" },
+            { x: 4, y: 8, walkable: true, image: "road_jpg" },
+            { x: 4, y: 9, walkable: true, image: "road_jpg" },
             { x: 5, y: 0, walkable: true, image: "road_jpg" },
             { x: 5, y: 1, walkable: true, image: "road_jpg" },
             { x: 5, y: 2, walkable: true, image: "road_jpg" },
@@ -59,6 +69,8 @@ var TileMap = (function (_super) {
             { x: 5, y: 5, walkable: true, image: "road_jpg" },
             { x: 5, y: 6, walkable: false, image: "block_jpg" },
             { x: 5, y: 7, walkable: true, image: "road_jpg" },
+            { x: 5, y: 8, walkable: true, image: "road_jpg" },
+            { x: 5, y: 9, walkable: true, image: "road_jpg" },
             { x: 6, y: 0, walkable: true, image: "road_jpg" },
             { x: 6, y: 1, walkable: true, image: "road_jpg" },
             { x: 6, y: 2, walkable: true, image: "road_jpg" },
@@ -67,6 +79,8 @@ var TileMap = (function (_super) {
             { x: 6, y: 5, walkable: true, image: "road_jpg" },
             { x: 6, y: 6, walkable: true, image: "road_jpg" },
             { x: 6, y: 7, walkable: true, image: "road_jpg" },
+            { x: 6, y: 8, walkable: true, image: "road_jpg" },
+            { x: 6, y: 9, walkable: true, image: "road_jpg" },
             { x: 7, y: 0, walkable: true, image: "road_jpg" },
             { x: 7, y: 1, walkable: true, image: "road_jpg" },
             { x: 7, y: 2, walkable: true, image: "road_jpg" },
@@ -74,7 +88,29 @@ var TileMap = (function (_super) {
             { x: 7, y: 4, walkable: true, image: "road_jpg" },
             { x: 7, y: 5, walkable: true, image: "road_jpg" },
             { x: 7, y: 6, walkable: true, image: "road_jpg" },
-            { x: 7, y: 7, walkable: true, image: "road_jpg" }
+            { x: 7, y: 7, walkable: true, image: "road_jpg" },
+            { x: 7, y: 8, walkable: true, image: "road_jpg" },
+            { x: 7, y: 9, walkable: true, image: "road_jpg" },
+            { x: 8, y: 0, walkable: true, image: "road_jpg" },
+            { x: 8, y: 1, walkable: true, image: "road_jpg" },
+            { x: 8, y: 2, walkable: true, image: "road_jpg" },
+            { x: 8, y: 3, walkable: true, image: "road_jpg" },
+            { x: 8, y: 4, walkable: true, image: "road_jpg" },
+            { x: 8, y: 5, walkable: true, image: "road_jpg" },
+            { x: 8, y: 6, walkable: true, image: "road_jpg" },
+            { x: 8, y: 7, walkable: true, image: "road_jpg" },
+            { x: 8, y: 8, walkable: true, image: "road_jpg" },
+            { x: 8, y: 9, walkable: true, image: "road_jpg" },
+            { x: 9, y: 0, walkable: true, image: "road_jpg" },
+            { x: 9, y: 1, walkable: true, image: "road_jpg" },
+            { x: 9, y: 2, walkable: true, image: "road_jpg" },
+            { x: 9, y: 3, walkable: true, image: "road_jpg" },
+            { x: 9, y: 4, walkable: true, image: "road_jpg" },
+            { x: 9, y: 5, walkable: true, image: "road_jpg" },
+            { x: 9, y: 6, walkable: true, image: "road_jpg" },
+            { x: 9, y: 7, walkable: true, image: "road_jpg" },
+            { x: 9, y: 8, walkable: true, image: "road_jpg" },
+            { x: 9, y: 9, walkable: true, image: "road_jpg" },
         ];
         for (var i = 0; i < this._config.length; i++) {
             var tiledata = new TileData(this._config[i].walkable, this._config[i].image, this._config[i].x, this._config[i].y);
@@ -90,15 +126,16 @@ var TileMap = (function (_super) {
             //this._touchY = e.stageY;
             //this._player.move(e.stageX, e.stageY);
             _this.findPathForNode(e.stageX, e.stageY);
+            console.log("point:x:" + e.stageX + "y:" + e.stageY);
         }, this);
         //this._player = player;
     }
     var d = __define,c=TileMap,p=c.prototype;
     p.findPathForNode = function (touchX, touchY) {
-        var playerX = Math.floor(this._player._body.x / Tile.TILE_SIZEX);
-        var playerY = Math.floor(this._player._body.y / Tile.TILE_SIZEY);
-        var gridX = Math.floor(touchX / Tile.TILE_SIZEX);
-        var gridY = Math.floor(touchY / Tile.TILE_SIZEY);
+        var playerX = Math.floor(this._player._body.x / Tile.TILE_SIZE);
+        var playerY = Math.floor(this._player._body.y / Tile.TILE_SIZE);
+        var gridX = Math.floor(touchX / Tile.TILE_SIZE);
+        var gridY = Math.floor(touchY / Tile.TILE_SIZE);
         var astar = new AStar();
         var grid = new Grid(this._column, this._row, this._config);
         grid.setStartNode(playerX, playerY);
@@ -108,8 +145,14 @@ var TileMap = (function (_super) {
                 console.log("get");
             });*/
             for (var i = 0; i < astar.path.length; i++) {
-                var targetX = astar.path[i].x * Tile.TILE_SIZEX;
-                var targetY = astar.path[i].y * Tile.TILE_SIZEY;
+                var targetX = astar.path[i].x * Tile.TILE_SIZE + Tile.TILE_SIZE / 2;
+                var targetY = astar.path[i].y * Tile.TILE_SIZE + Tile.TILE_SIZE / 2;
+                console.log("X:" + targetX, "Y" + targetY);
+                var circle = new egret.Shape();
+                circle.graphics.beginFill(0xff000, 1);
+                circle.graphics.drawCircle(targetX, targetY, 50);
+                circle.graphics.endFill();
+                this.addChild(circle);
                 this._player.move(targetX, targetY);
             }
         }
@@ -125,12 +168,15 @@ var Tile = (function (_super) {
         var bitmap = new egret.Bitmap();
         this.addChild(bitmap);
         bitmap.texture = RES.getRes(data.image);
-        bitmap.x = data.x * Tile.TILE_SIZEX;
-        bitmap.y = data.y * Tile.TILE_SIZEY;
+        bitmap.height = Tile.TILE_SIZE;
+        bitmap.width = Tile.TILE_SIZE;
+        bitmap.x = data.x * Tile.TILE_SIZE;
+        bitmap.y = data.y * Tile.TILE_SIZE;
     }
     var d = __define,c=Tile,p=c.prototype;
-    Tile.TILE_SIZEX = 80;
-    Tile.TILE_SIZEY = 142;
+    //public static TILE_SIZEX = 80;
+    //public static TILE_SIZEY = 142;
+    Tile.TILE_SIZE = 64;
     return Tile;
 }(egret.DisplayObjectContainer));
 egret.registerClass(Tile,'Tile');
