@@ -22,8 +22,8 @@ class AStar {
         this._open = new Array();
         this._closed = new Array();
 
-        this._startNode = this._grid.startNode;
-        this._endNode = this._grid.endNode;
+        this._startNode = this._grid.getStartNode();
+        this._endNode = this._grid.getEndNode();
 
         this._startNode.g = 0;
         this._startNode.h = this._heuristic(this._startNode);
@@ -36,9 +36,9 @@ class AStar {
         var node: NodeNew = this._startNode;
         while (node != this._endNode) {
             var startX: number = Math.max(0, node.x - 1);
-            var endX: number = Math.min(this._grid.numCols - 1, node.x + 1);
+            var endX: number = Math.min(this._grid.getNumCols() - 1, node.x + 1);
             var startY: number = Math.max(0, node.y - 1);
-            var endY: number = Math.min(this._grid.numRows - 1, node.y + 1);
+            var endY: number = Math.min(this._grid.getNumRows() - 1, node.y + 1);
 
             for (var i = startX; i <= endX; i++) {
                 for (var j = startY; j <= endY; j++) {
@@ -135,7 +135,7 @@ class AStar {
     }
 
     //debug:public visited(): TileNode[]?
-    public get visited(): Array<any> {
+    public getVisited(): Array<any> {
         return this._closed.concat(this._open);
     }
 

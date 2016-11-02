@@ -1,5 +1,6 @@
 var Grid = (function () {
-    function Grid(numCols, numRows) {
+    function Grid(numCols, numRows, tileData) {
+        this._nodes = [];
         this._numCols = numCols;
         this._numRows = numRows;
         this._nodes = new Array();
@@ -7,6 +8,8 @@ var Grid = (function () {
             this._nodes[i] = new Array();
             for (var j = 0; j < this._numRows; j++) {
                 this._nodes[i][j] = new NodeNew(i, j);
+                //debug
+                this._nodes[i][j].walkable = tileData[i + this._numRows * j].walkable;
             }
         }
     }
@@ -23,26 +26,18 @@ var Grid = (function () {
     p.setWalkable = function (x, y, value) {
         this._nodes[x][y].walkable = value;
     };
-    d(p, "endNode"
-        ,function () {
-            return this._endNode;
-        }
-    );
-    d(p, "numCols"
-        ,function () {
-            return this._numCols;
-        }
-    );
-    d(p, "numRows"
-        ,function () {
-            return this._numRows;
-        }
-    );
-    d(p, "startNode"
-        ,function () {
-            return this._startNode;
-        }
-    );
+    p.getEndNode = function () {
+        return this._endNode;
+    };
+    p.getNumCols = function () {
+        return this._numCols;
+    };
+    p.getNumRows = function () {
+        return this._numRows;
+    };
+    p.getStartNode = function () {
+        return this._startNode;
+    };
     return Grid;
 }());
 egret.registerClass(Grid,'Grid');

@@ -1,10 +1,16 @@
 // TypeScript file
-class TileMap extends egret.DisplayObjectContainer{
-    _player:Player;
-    _block : egret.Bitmap;
-    _config : Array<any>;
-    constructor(){
-        super();   
+class TileMap extends egret.DisplayObjectContainer {
+    _player: Player;
+    _block: egret.Bitmap;
+    _config: Array<any>;
+    //_touchX: number;
+    //_touchY: number;
+    //_targetX: number;
+    //_targetY: number;
+    _column: number = 8;
+    _row: number = 8;
+    constructor() {
+        super();
         this._config = [
             { x: 0, y: 0, walkable: true, image: "road_jpg" },
             { x: 0, y: 1, walkable: true, image: "road_jpg" },
@@ -78,21 +84,47 @@ class TileMap extends egret.DisplayObjectContainer{
         }
         this._player = new Player();
         this.touchEnabled = true;
-        this.addEventListener(egret.TouchEvent.TOUCH_END, (e)=>{
-            this._player.move(e.stageX, e.stageY);
-        }, this);
-        //this._player = player;
         this._player.idle();
         this.addChild(this._player);
+        this.addEventListener(egret.TouchEvent.TOUCH_TAP, (e) => {
+            //this._touchX = e.stageX;
+            //this._touchY = e.stageY;
+            //this._player.move(e.stageX, e.stageY);
+            this.findPathForNode(e.stageX, e.stageY);
+        }, this);
+        //this._player = player;
         
+    }
+
+    private findPathForNode(touchX:number, touchY:number) {
+        var playerX: number = Math.floor(this._player._body.x / Tile.TILE_SIZEX);
+        var playerY: number = Math.floor(this._player._body.y / Tile.TILE_SIZEY);
+        var gridX: number = Math.floor(touchX / Tile.TILE_SIZEX);
+        var gridY:number = Math.floor(touchY / Tile.TILE_SIZEY);
+        var astar = new AStar();
+        var grid = new Grid(this._column, this._row, this._config);
+        grid.setStartNode(playerX, playerY);
+        grid.setEndNode(gridX, gridY);
+        if(astar.findPath(grid)){
+            /*astar.path.map((tile)=>{
+                console.log("get");
+            });*/
+            for(var i = 0; i<astar.path.length; i++){
+                var targetX:number = astar.path[i].x * Tile.TILE_SIZEX;
+                var targetY:number = astar.path[i].y * Tile.TILE_SIZEY;
+                this._player.move(targetX, targetY);
+            }
+        }
+
+
     }
 
 
 }
 
 class Tile extends egret.DisplayObjectContainer {
-    TILE_SIZEX = 80;
-    TILE_SIZEY = 142;
+    public static TILE_SIZEX = 80;
+    public static TILE_SIZEY = 142;
     data: TileData;
     constructor(data: TileData) {
         super();
@@ -100,8 +132,8 @@ class Tile extends egret.DisplayObjectContainer {
         var bitmap = new egret.Bitmap();
         this.addChild(bitmap);
         bitmap.texture = RES.getRes(data.image);
-        bitmap.x = data.x * this.TILE_SIZEX;
-        bitmap.y = data.y * this.TILE_SIZEY;
+        bitmap.x = data.x * Tile.TILE_SIZEX;
+        bitmap.y = data.y * Tile.TILE_SIZEY;
     }
 }
 

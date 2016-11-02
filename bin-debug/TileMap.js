@@ -4,6 +4,12 @@ var TileMap = (function (_super) {
     function TileMap() {
         var _this = this;
         _super.call(this);
+        //_touchX: number;
+        //_touchY: number;
+        //_targetX: number;
+        //_targetY: number;
+        this._column = 8;
+        this._row = 8;
         this._config = [
             { x: 0, y: 0, walkable: true, image: "road_jpg" },
             { x: 0, y: 1, walkable: true, image: "road_jpg" },
@@ -77,14 +83,37 @@ var TileMap = (function (_super) {
         }
         this._player = new Player();
         this.touchEnabled = true;
-        this.addEventListener(egret.TouchEvent.TOUCH_END, function (e) {
-            _this._player.move(e.stageX, e.stageY);
-        }, this);
-        //this._player = player;
         this._player.idle();
         this.addChild(this._player);
+        this.addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+            //this._touchX = e.stageX;
+            //this._touchY = e.stageY;
+            //this._player.move(e.stageX, e.stageY);
+            _this.findPathForNode(e.stageX, e.stageY);
+        }, this);
+        //this._player = player;
     }
     var d = __define,c=TileMap,p=c.prototype;
+    p.findPathForNode = function (touchX, touchY) {
+        var playerX = Math.floor(this._player._body.x / Tile.TILE_SIZEX);
+        var playerY = Math.floor(this._player._body.y / Tile.TILE_SIZEY);
+        var gridX = Math.floor(touchX / Tile.TILE_SIZEX);
+        var gridY = Math.floor(touchY / Tile.TILE_SIZEY);
+        var astar = new AStar();
+        var grid = new Grid(this._column, this._row, this._config);
+        grid.setStartNode(playerX, playerY);
+        grid.setEndNode(gridX, gridY);
+        if (astar.findPath(grid)) {
+            /*astar.path.map((tile)=>{
+                console.log("get");
+            });*/
+            for (var i = 0; i < astar.path.length; i++) {
+                var targetX = astar.path[i].x * Tile.TILE_SIZEX;
+                var targetY = astar.path[i].y * Tile.TILE_SIZEY;
+                this._player.move(targetX, targetY);
+            }
+        }
+    };
     return TileMap;
 }(egret.DisplayObjectContainer));
 egret.registerClass(TileMap,'TileMap');
@@ -92,16 +121,16 @@ var Tile = (function (_super) {
     __extends(Tile, _super);
     function Tile(data) {
         _super.call(this);
-        this.TILE_SIZEX = 80;
-        this.TILE_SIZEY = 142;
         this.data = data;
         var bitmap = new egret.Bitmap();
         this.addChild(bitmap);
         bitmap.texture = RES.getRes(data.image);
-        bitmap.x = data.x * this.TILE_SIZEX;
-        bitmap.y = data.y * this.TILE_SIZEY;
+        bitmap.x = data.x * Tile.TILE_SIZEX;
+        bitmap.y = data.y * Tile.TILE_SIZEY;
     }
     var d = __define,c=Tile,p=c.prototype;
+    Tile.TILE_SIZEX = 80;
+    Tile.TILE_SIZEY = 142;
     return Tile;
 }(egret.DisplayObjectContainer));
 egret.registerClass(Tile,'Tile');

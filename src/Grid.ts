@@ -1,12 +1,12 @@
 class Grid {
     private _startNode: NodeNew;
     private _endNode: NodeNew;
-    private _nodes: Array<any>;
+    private _nodes: NodeNew[][] = [];
     //debug
     //_nodes:NodeNew[][] = [];
     private _numCols: number;
     private _numRows: number;
-    constructor(numCols: number, numRows: number) {
+    constructor(numCols: number, numRows: number, tileData: TileData[]) {
         this._numCols = numCols;
         this._numRows = numRows;
         this._nodes = new Array();
@@ -15,6 +15,8 @@ class Grid {
             this._nodes[i] = new Array();
             for (var j = 0; j < this._numRows; j++) {
                 this._nodes[i][j] = new NodeNew(i, j);
+                //debug
+                this._nodes[i][j].walkable = tileData[i + this._numRows * j].walkable;
             }
         }
     }
@@ -35,19 +37,19 @@ class Grid {
         this._nodes[x][y].walkable = value;
     }
 
-    public get endNode(): NodeNew {
+    public getEndNode(): NodeNew {
         return this._endNode;
     }
 
-    public get numCols(): number {
+    public getNumCols(): number {
         return this._numCols;
     }
 
-    public get numRows(): number {
+    public getNumRows(): number {
         return this._numRows;
     }
 
-    public get startNode(): NodeNew {
+    public getStartNode(): NodeNew {
         return this._startNode;
     }
 }

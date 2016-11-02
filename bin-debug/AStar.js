@@ -9,8 +9,8 @@ var AStar = (function () {
         this._grid = grid;
         this._open = new Array();
         this._closed = new Array();
-        this._startNode = this._grid.startNode;
-        this._endNode = this._grid.endNode;
+        this._startNode = this._grid.getStartNode();
+        this._endNode = this._grid.getEndNode();
         this._startNode.g = 0;
         this._startNode.h = this._heuristic(this._startNode);
         this._startNode.f = this._startNode.g + this._startNode.h;
@@ -20,9 +20,9 @@ var AStar = (function () {
         var node = this._startNode;
         while (node != this._endNode) {
             var startX = Math.max(0, node.x - 1);
-            var endX = Math.min(this._grid.numCols - 1, node.x + 1);
+            var endX = Math.min(this._grid.getNumCols() - 1, node.x + 1);
             var startY = Math.max(0, node.y - 1);
-            var endY = Math.min(this._grid.numRows - 1, node.y + 1);
+            var endY = Math.min(this._grid.getNumRows() - 1, node.y + 1);
             for (var i = startX; i <= endX; i++) {
                 for (var j = startY; j <= endY; j++) {
                     var test = this._grid.getNode(i, j);
@@ -113,12 +113,10 @@ var AStar = (function () {
         var straight = dx + dy;
         return this._diagCost * diag + this._straightCost * (straight - 2 * diag);
     };
-    d(p, "visited"
-        //debug:public visited(): TileNode[]?
-        ,function () {
-            return this._closed.concat(this._open);
-        }
-    );
+    //debug:public visited(): TileNode[]?
+    p.getVisited = function () {
+        return this._closed.concat(this._open);
+    };
     return AStar;
 }());
 egret.registerClass(AStar,'AStar');
