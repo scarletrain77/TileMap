@@ -1,5 +1,6 @@
 // TypeScript file
 class Player extends egret.DisplayObjectContainer {
+
     _modeText: egret.TextField;
     // _body: egret.MovieClip;
     _body: Body;

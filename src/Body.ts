@@ -1,5 +1,9 @@
 // TypeScript file
 class Body extends egret.DisplayObjectContainer {
+    public static RUN_BODY_H;
+    public static RUN_BODY_W;
+    public static IDLE_BODY_H;
+    public static IDLE_BODY_W;
     private dogIdleArray: egret.Bitmap[];
     private dogRunArray: egret.Bitmap[]
     private timeOnEnterFrame: number = 0;
@@ -36,6 +40,10 @@ class Body extends egret.DisplayObjectContainer {
         this.dogIdleArray = [dog01, dog02, dog03, dog04, dog05, dog06, dog07, dog08];
         this.dogRunArray = [dog09, dog10, dog11, dog12, dog13, dog14, dog15, dog16];
         this.mode = mode;
+        Body.RUN_BODY_W = this.dogIdleArray[0].width;
+        Body.RUN_BODY_H = this.dogIdleArray[0].height;
+        Body.RUN_BODY_W = this.dogRunArray[0].width;
+        Body.RUN_BODY_H = this.dogRunArray[0].height;
         this.once(egret.Event.ADDED_TO_STAGE, this.onLoad, this);
     }
 

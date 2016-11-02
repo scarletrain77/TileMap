@@ -147,24 +147,23 @@ class TileMap extends egret.DisplayObjectContainer {
         grid.setStartNode(playerX, playerY);
         grid.setEndNode(gridX, gridY);
         if (astar.findPath(grid)) {
-            var alphax = 1;
+            //var alphax = 1;
             for (var i = 0; i < astar.path.length; i++) {
-                var targetX: number = astar.path[i].x * Tile.TILE_SIZE + Tile.TILE_SIZE / 2;
-                var targetY: number = astar.path[i].y * Tile.TILE_SIZE + Tile.TILE_SIZE / 2;
+                var targetX: number = astar.path[i].x * Tile.TILE_SIZE + Tile.TILE_SIZE / 2 - Body.RUN_BODY_W/2;
+                var targetY: number = astar.path[i].y * Tile.TILE_SIZE + Tile.TILE_SIZE / 2 - Body.RUN_BODY_H/2;
                 this._moveX[i] = targetX;
                 this._moveY[i] = targetY;
                 
-                var circle = new egret.Shape();
-                
+                //用圆表示路径
+                /*var circle = new egret.Shape();
                 circle.graphics.beginFill(0xff000, alphax);
                 circle.graphics.drawCircle(targetX, targetY, 50);
                 circle.graphics.endFill();
                 this.addChild(circle);
-                
                 alphax -= 0.1;
                 if(alphax == 0){
                     alphax = 1;
-                }
+                }*/
             }
             this._player.move(this._moveX, this._moveY);
         }
