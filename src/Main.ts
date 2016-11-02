@@ -88,20 +88,20 @@ class Main extends egret.DisplayObjectContainer {
      * Create a game scene
      */
     private createGameScene(): void {
-        var sky: egret.Bitmap = this.createBitmapByName("bg_jpg");
-        this.addChild(sky);
-        var stageW: number = this.stage.stageWidth;
-        var stageH: number = this.stage.stageHeight;
-        sky.width = stageW;
-        sky.height = stageH;
+        //var sky: egret.Bitmap = this.createBitmapByName("bg_jpg");
+        //this.addChild(sky);
+        //var stageW: number = this.stage.stageWidth;
+        //var stageH: number = this.stage.stageHeight;
+        //sky.width = stageW;
+        //sky.height = stageH;
 
        
         //var container = new egret.DisplayObjectContainer();
        
-        sky.touchEnabled = true;
-        sky.addEventListener(egret.TouchEvent.TOUCH_END, (e) => {
+        //sky.touchEnabled = true;
+        //sky.addEventListener(egret.TouchEvent.TOUCH_END, (e) => {
             //player.move(e.stageX, e.stageY);
-        }, this);
+        //}, this);
 //        var player = new Player();
         this.addChild(new TileMap());
     }

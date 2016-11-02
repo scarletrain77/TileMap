@@ -73,17 +73,17 @@ var Main = (function (_super) {
      * Create a game scene
      */
     p.createGameScene = function () {
-        var sky = this.createBitmapByName("bg_jpg");
-        this.addChild(sky);
-        var stageW = this.stage.stageWidth;
-        var stageH = this.stage.stageHeight;
-        sky.width = stageW;
-        sky.height = stageH;
+        //var sky: egret.Bitmap = this.createBitmapByName("bg_jpg");
+        //this.addChild(sky);
+        //var stageW: number = this.stage.stageWidth;
+        //var stageH: number = this.stage.stageHeight;
+        //sky.width = stageW;
+        //sky.height = stageH;
         //var container = new egret.DisplayObjectContainer();
-        sky.touchEnabled = true;
-        sky.addEventListener(egret.TouchEvent.TOUCH_END, function (e) {
-            //player.move(e.stageX, e.stageY);
-        }, this);
+        //sky.touchEnabled = true;
+        //sky.addEventListener(egret.TouchEvent.TOUCH_END, (e) => {
+        //player.move(e.stageX, e.stageY);
+        //}, this);
         //        var player = new Player();
         this.addChild(new TileMap());
     };
