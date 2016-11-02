@@ -3,12 +3,10 @@ class TileMap extends egret.DisplayObjectContainer {
     _player: Player;
     _block: egret.Bitmap;
     _config: Array<any>;
-    //_touchX: number;
-    //_touchY: number;
-    //_targetX: number;
-    //_targetY: number;
     _column: number = 10;
     _row: number = 10;
+    _moveX:number[];
+    _moveY:number[];
     constructor() {
         super();
         this._config = [
@@ -132,6 +130,8 @@ class TileMap extends egret.DisplayObjectContainer {
         this._player.idle();
         this.addChild(this._player);
         this.addEventListener(egret.TouchEvent.TOUCH_TAP, (e) => {
+            this._moveX = new Array();
+            this._moveY = new Array();
             this.findPathForNode(e.stageX, e.stageY);
             console.log("point:x:" + e.stageX + "y:" + e.stageY);
         }, this);
@@ -147,20 +147,26 @@ class TileMap extends egret.DisplayObjectContainer {
         grid.setStartNode(playerX, playerY);
         grid.setEndNode(gridX, gridY);
         if (astar.findPath(grid)) {
-            /*astar.path.map((tile)=>{
-                console.log("get");
-            });*/
+            var alphax = 1;
             for (var i = 0; i < astar.path.length; i++) {
                 var targetX: number = astar.path[i].x * Tile.TILE_SIZE + Tile.TILE_SIZE / 2;
                 var targetY: number = astar.path[i].y * Tile.TILE_SIZE + Tile.TILE_SIZE / 2;
-                console.log("X:" + targetX, "Y" + targetY);
+                this._moveX[i] = targetX;
+                this._moveY[i] = targetY;
+                
                 var circle = new egret.Shape();
-                circle.graphics.beginFill(0xff000, 1);
+                
+                circle.graphics.beginFill(0xff000, alphax);
                 circle.graphics.drawCircle(targetX, targetY, 50);
                 circle.graphics.endFill();
                 this.addChild(circle);
-                this._player.move(targetX, targetY);
+                
+                alphax -= 0.1;
+                if(alphax == 0){
+                    alphax = 1;
+                }
             }
+            this._player.move(this._moveX, this._moveY);
         }
 
 

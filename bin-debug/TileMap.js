@@ -4,10 +4,6 @@ var TileMap = (function (_super) {
     function TileMap() {
         var _this = this;
         _super.call(this);
-        //_touchX: number;
-        //_touchY: number;
-        //_targetX: number;
-        //_targetY: number;
         this._column = 10;
         this._row = 10;
         this._config = [
@@ -122,13 +118,11 @@ var TileMap = (function (_super) {
         this._player.idle();
         this.addChild(this._player);
         this.addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
-            //this._touchX = e.stageX;
-            //this._touchY = e.stageY;
-            //this._player.move(e.stageX, e.stageY);
+            _this._moveX = new Array();
+            _this._moveY = new Array();
             _this.findPathForNode(e.stageX, e.stageY);
             console.log("point:x:" + e.stageX + "y:" + e.stageY);
         }, this);
-        //this._player = player;
     }
     var d = __define,c=TileMap,p=c.prototype;
     p.findPathForNode = function (touchX, touchY) {
@@ -141,20 +135,23 @@ var TileMap = (function (_super) {
         grid.setStartNode(playerX, playerY);
         grid.setEndNode(gridX, gridY);
         if (astar.findPath(grid)) {
-            /*astar.path.map((tile)=>{
-                console.log("get");
-            });*/
+            var alphax = 1;
             for (var i = 0; i < astar.path.length; i++) {
                 var targetX = astar.path[i].x * Tile.TILE_SIZE + Tile.TILE_SIZE / 2;
                 var targetY = astar.path[i].y * Tile.TILE_SIZE + Tile.TILE_SIZE / 2;
-                console.log("X:" + targetX, "Y" + targetY);
+                this._moveX[i] = targetX;
+                this._moveY[i] = targetY;
                 var circle = new egret.Shape();
-                circle.graphics.beginFill(0xff000, 1);
+                circle.graphics.beginFill(0xff000, alphax);
                 circle.graphics.drawCircle(targetX, targetY, 50);
                 circle.graphics.endFill();
                 this.addChild(circle);
-                this._player.move(targetX, targetY);
+                alphax -= 0.1;
+                if (alphax == 0) {
+                    alphax = 1;
+                }
             }
+            this._player.move(this._moveX, this._moveY);
         }
     };
     return TileMap;
@@ -174,8 +171,6 @@ var Tile = (function (_super) {
         bitmap.y = data.y * Tile.TILE_SIZE;
     }
     var d = __define,c=Tile,p=c.prototype;
-    //public static TILE_SIZEX = 80;
-    //public static TILE_SIZEY = 142;
     Tile.TILE_SIZE = 64;
     return Tile;
 }(egret.DisplayObjectContainer));

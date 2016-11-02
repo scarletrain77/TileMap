@@ -1,6 +1,5 @@
 var Grid = (function () {
     function Grid(numCols, numRows, tileData) {
-        this._nodes = [];
         this._numCols = numCols;
         this._numRows = numRows;
         this._nodes = new Array();
@@ -8,8 +7,6 @@ var Grid = (function () {
             this._nodes[i] = new Array();
             for (var j = 0; j < this._numRows; j++) {
                 this._nodes[i][j] = new NodeNew(i, j);
-                //第0行第6个 = 6
-                //第1行第8个 = 16
                 this._nodes[i][j].walkable = tileData[this._numCols * i + j].walkable;
             }
         }

@@ -1,9 +1,7 @@
 class Grid {
     private _startNode: NodeNew;
     private _endNode: NodeNew;
-    private _nodes: NodeNew[][] = [];
-    //debug
-    //_nodes:NodeNew[][] = [];
+    private _nodes: Array<any>;
     private _numCols: number;
     private _numRows: number;
     constructor(numCols: number, numRows: number, tileData: TileData[]) {
@@ -15,8 +13,6 @@ class Grid {
             this._nodes[i] = new Array();
             for (var j = 0; j < this._numRows; j++) {
                 this._nodes[i][j] = new NodeNew(i, j);
-                //第0行第6个 = 6
-                //第1行第8个 = 16
                 this._nodes[i][j].walkable = tileData[this._numCols * i + j].walkable;
             }
         }

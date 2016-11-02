@@ -25,7 +25,7 @@ class Player extends egret.DisplayObjectContainer {
         //this._body.gotoAndPlay("idle", -1);
     }
 
-    move(targetX: number, targetY: number) {
+    move(targetX: number[], targetY: number[]) {
         this._stateMachine.setState(new PlayerMoveState(this, targetX, targetY));
     }
 
@@ -70,9 +70,9 @@ class PlayerState implements State {
 }
 
 class PlayerMoveState extends PlayerState {
-    _targetX: number;
-    _targetY: number;
-    constructor(player: Player, targetX: number, targetY: number) {
+    _targetX: number[];
+    _targetY: number[];
+    constructor(player: Player, targetX: number[], targetY: number[]) {
         super(player);
         this._targetX = targetX;
         this._targetY = targetY;
@@ -84,7 +84,14 @@ class PlayerMoveState extends PlayerState {
         this._player._body.reset();
         this._player._body.mode = "Run";
         var tw = egret.Tween.get(this._player._body);
-        tw.to({ x: this._targetX, y: this._targetY }, 500).call(this._player.idle, this._player);
+        for (var i = 0; i < this._targetX.length; i++) {
+            if (i == this._targetX.length - 1) {
+                tw.to({ x: this._targetX[i], y: this._targetY[i] }, 500).call(this._player.idle, this._player);
+            } else {
+                tw.to({ x: this._targetX[i], y: this._targetY[i] }, 500);
+            }
+        }
+        console.log("playerX:" + this._player._body.x + "playerY:" + this._player._body.y);
     }
 }
 
